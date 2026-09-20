@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520">
+<rect width="1280" height="520" rx="28" fill="#0b1220"/>
+<text x="64" y="60" fill="#fff" font-size="28" font-family="Arial,sans-serif" font-weight="700">How Relay fits into your development workflow</text>
+<text x="64" y="92" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">It does not replace Git, SSH or your AI agent. It connects their state.</text>
+<g font-family="Arial,sans-serif">
+ <text x="105" y="145" fill="#64748b" font-size="15" font-weight="700">YOUR ENVIRONMENT</text>
+ <rect x="70" y="170" width="260" height="250" rx="22" fill="#111827" stroke="#334155"/>
+ <rect x="95" y="198" width="210" height="52" rx="14" fill="#0f172a"/><text x="200" y="230" text-anchor="middle" fill="#e2e8f0" font-size="17">Local folder</text>
+ <rect x="95" y="266" width="210" height="52" rx="14" fill="#0f172a"/><text x="200" y="298" text-anchor="middle" fill="#e2e8f0" font-size="17">Git repository</text>
+ <rect x="95" y="334" width="210" height="52" rx="14" fill="#0f172a"/><text x="200" y="366" text-anchor="middle" fill="#e2e8f0" font-size="17">SSH aliases</text>
+
+ <path d="M345 295h125" stroke="#38bdf8" stroke-width="5"/><path d="m466 285 18 10-18 10" fill="#38bdf8"/>
+ <rect x="495" y="180" width="290" height="230" rx="28" fill="#07111f" stroke="#38bdf8" stroke-width="2"/>
+ <text x="640" y="225" text-anchor="middle" fill="#7dd3fc" font-size="24" font-weight="800">.relay/</text>
+ <text x="640" y="267" text-anchor="middle" fill="#fff" font-size="18">current task</text>
+ <text x="640" y="300" text-anchor="middle" fill="#fff" font-size="18">Git snapshot</text>
+ <text x="640" y="333" text-anchor="middle" fill="#fff" font-size="18">notes + next step</text>
+ <text x="640" y="366" text-anchor="middle" fill="#fff" font-size="18">checkpoints</text>
+
+ <path d="M800 295h125" stroke="#818cf8" stroke-width="5"/><path d="m921 285 18 10-18 10" fill="#818cf8"/>
+ <text x="962" y="145" fill="#64748b" font-size="15" font-weight="700">CONTINUE ANYWHERE</text>
+ <rect x="950" y="170" width="260" height="250" rx="22" fill="#111827" stroke="#334155"/>
+ <rect x="975" y="198" width="210" height="52" rx="14" fill="#0f172a"/><text x="1080" y="230" text-anchor="middle" fill="#e2e8f0" font-size="17">Another AI agent</text>
+ <rect x="975" y="266" width="210" height="52" rx="14" fill="#0f172a"/><text x="1080" y="298" text-anchor="middle" fill="#e2e8f0" font-size="17">Another machine</text>
+ <rect x="975" y="334" width="210" height="52" rx="14" fill="#0f172a"/><text x="1080" y="366" text-anchor="middle" fill="#e2e8f0" font-size="17">Same remote repo</text>
+</g>
+<text x="640" y="465" text-anchor="middle" fill="#94a3b8" font-size="16" font-family="Arial,sans-serif">Optional sync uses refs/notes/relay — your working branch stays clean.</text>
+</svg>

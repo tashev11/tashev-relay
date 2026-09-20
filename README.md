@@ -1,38 +1,130 @@
-# Tashev Relay
-
 <p align="center">
-  <img src="assets/logo.svg" width="120" alt="Tashev Relay logo">
-</p>
-
-<p align="center"><strong>Git remembers your code. Relay remembers your work.</strong></p>
-
-<p align="center">
-  Switch AI. Switch machine. Keep working.
+  <img src="assets/hero.svg" alt="Tashev Relay — Switch AI. Switch machine. Keep working." width="100%">
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-  <img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-brightgreen">
-  <img alt="Node 18+" src="https://img.shields.io/badge/node-%3E%3D18-brightgreen">
+  <a href="https://github.com/tashev11/tashev-relay/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/tashev11/tashev-relay?style=flat-square"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-38bdf8?style=flat-square"></a>
+  <img alt="Zero runtime dependencies" src="https://img.shields.io/badge/runtime_dependencies-0-34d399?style=flat-square">
+  <img alt="Node.js 18+" src="https://img.shields.io/badge/Node.js-%3E%3D18-84cc16?style=flat-square">
+  <a href="https://github.com/tashev11/tashev-relay/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/tashev11/tashev-relay?style=flat-square"></a>
+  <a href="https://github.com/tashev11/tashev-relay/issues"><img alt="Issues" src="https://img.shields.io/github/issues/tashev11/tashev-relay?style=flat-square"></a>
 </p>
 
-Tashev Relay is a local-first continuity layer for AI-assisted development. It captures the task you are working on, Git state, changed files, next step and optional server checks so another coding agent or another machine can continue without rebuilding context from scratch.
+<p align="center">
+  <strong>Portable project continuity for AI-assisted development.</strong><br>
+  Save where you stopped. Switch agent, account, terminal or machine. Resume with the context that matters.
+</p>
 
-## 15-second demo
+<p align="center">
+  <a href="#-quick-start"><strong>Quick start</strong></a> ·
+  <a href="#-how-it-works"><strong>How it works</strong></a> ·
+  <a href="#-relay-doctor"><strong>Relay Doctor</strong></a> ·
+  <a href="README_RU.md"><strong>Русская версия</strong></a> ·
+  <a href="https://github.com/tashev11/tashev-relay/discussions"><strong>Discussions</strong></a>
+</p>
 
-```bash
-# Claude Code session
+---
+
+## The problem
+
+AI coding sessions are powerful — but continuity is fragile.
+
+| You switch… | What usually gets lost |
+| --- | --- |
+| Claude Code → Codex | current task, decisions, next step |
+| laptop → desktop | local context and what changed |
+| one terminal/account → another | why the branch is in its current state |
+| local → remote server | whether GitHub and production still match |
+| today → tomorrow | what was already tried and what must not be repeated |
+
+**Git remembers the code. It does not remember the work around the code.**
+
+Tashev Relay adds that missing continuity layer.
+
+<p align="center">
+  <img src="assets/workflow.svg" alt="Relay workflow: save in one AI session and resume in another" width="100%">
+</p>
+
+---
+
+## What Relay remembers
+
+Relay captures a compact, human-readable project state:
+
+| State | Example |
+| --- | --- |
+| Current task | Fix refresh-token rotation |
+| Next step | Run integration tests |
+| Git branch | feature/auth |
+| Commit | 9fa31b2c |
+| Working tree | changed / staged / untracked files |
+| Last agent | Claude Code, Codex, Cursor… |
+| Notes | decisions and important context |
+| Remote state | optional GitHub drift check |
+| Server state | optional SSH reachability check |
+
+It intentionally **does not become another cloud workspace or AI account**.
+
+---
+
+## 🤖 Agent-neutral by design
+
+<p align="center">
+  <img src="assets/agents.svg" alt="Supported AI coding agents" width="100%">
+</p>
+
+Relay can generate focused continuation handoffs for **Claude Code, OpenAI Codex, Cursor, Gemini CLI, OpenCode and GitHub Copilot**.
+
+The core state stays neutral, so one provider never becomes the source of truth.
+
+---
+
+## ⚡ Quick start
+
+### 1. Install
+
+From GitHub:
+
+~~~bash
+git clone https://github.com/tashev11/tashev-relay.git
+cd tashev-relay
+npm install -g .
+relay --help
+~~~
+
+### 2. Initialize any project
+
+~~~bash
+cd your-project
+relay init
+~~~
+
+### 3. Save where you stopped
+
+~~~bash
 relay save \
   --task "Fix refresh-token rotation" \
   --next "Run integration tests" \
+  --note "Do not replace the existing auth middleware" \
   --agent claude
+~~~
 
-# Switch to Codex, Cursor, Gemini CLI, another account or another terminal
+### 4. Switch AI / account / terminal / machine
+
+~~~bash
 relay handoff codex --stdout
-relay resume
-```
+~~~
 
-```text
+or simply:
+
+~~~bash
+relay resume
+~~~
+
+Example:
+
+~~~text
 TASHEV RELAY
 Switch AI. Switch machine. Keep working.
 
@@ -47,173 +139,207 @@ Fix refresh-token rotation
 
 Next
 Run integration tests
-```
+~~~
 
-## Why Relay?
+---
 
-Your Git repository remembers commits. It does not remember why you changed a file, what is still unfinished, what not to touch, which AI worked last, or whether your local branch drifted from GitHub.
+## 🔄 Cross-machine resume
 
-Relay keeps that operational context in a small, human-readable state.
+Relay can sync context through the **existing Git remote** without adding state commits to your working branch.
 
-- **Local-first** — no Relay account or cloud service.
-- **Zero runtime dependencies** — only Node.js 18+ and Git.
-- **Agent-neutral** — handoffs for Claude Code, Codex, Cursor, Gemini CLI, OpenCode and GitHub Copilot.
-- **Git-aware** — branch, commit, staged, modified and untracked files.
-- **Cross-machine state sync** — optional Git notes ref, separate from your working branch.
-- **Drift detection** — compare local HEAD with the remote branch.
-- **Server probes** — optional SSH reachability checks by alias.
-- **Secret-safe by design** — Relay never reads `.env` values, private SSH keys, cookies or AI credentials. Credentials in remote URLs are stripped and token-like strings in your notes are masked.
+Machine A:
 
-## Install
-
-From GitHub today:
-
-```bash
-git clone https://github.com/tashev11/tashev-relay.git
-cd tashev-relay
-npm install -g .
-relay --help
-```
-
-When the npm package is published:
-
-```bash
-npm install -g tashev-relay
-```
-
-## Quick start
-
-Inside any Git repository:
-
-```bash
-relay init
-
-relay save \
-  --task "Implement billing webhook" \
-  --next "Test duplicate event handling" \
-  --agent claude
-
-relay status
-relay doctor
-```
-
-Generate a handoff for another agent:
-
-```bash
-relay handoff codex --stdout
-```
-
-Create a local checkpoint:
-
-```bash
-relay checkpoint
-```
-
-Sync context through the existing Git remote without touching your branch:
-
-```bash
+~~~bash
+relay save --task "Finish billing webhook" --next "Test idempotency"
 relay sync push
+~~~
 
-# On another machine at the same commit:
+Machine B, at the same commit:
+
+~~~bash
+git pull
 relay sync pull
 relay resume
-```
+~~~
 
-> Relay sync transfers **context state**, not uncommitted source code. If your working tree is dirty, `relay doctor` and `relay sync push` warn you. Commit/push your code or keep working on the same machine.
+Relay uses <code>refs/notes/relay</code>. Your normal branch stays clean.
 
-> Anyone who can read the repository can fetch `refs/notes/relay`. Synced state carries your task text, notes, branch and file names. It leaves out the hostname and local paths, and token-like strings are masked. Two machines can push in any order: Relay merges the notes already on origin first.
+> Context sync is not source-code sync. Uncommitted code stays on the machine where it was created. Relay warns you instead of pretending everything is portable.
 
-## Commands
+---
 
-| Command | Purpose |
+## 🧭 How it works
+
+<p align="center">
+  <img src="assets/architecture.svg" alt="Tashev Relay architecture" width="100%">
+</p>
+
+Relay is deliberately small. It reads Git metadata plus the task, next step and notes you explicitly provide. Optional SSH checks use aliases already configured on your machine.
+
+It does **not** replace Git, SSH, your IDE or your coding agent. It connects the state between them.
+
+---
+
+## 🩺 Relay Doctor
+
+Before continuing work:
+
+~~~bash
+relay doctor
+~~~
+
+<p align="center">
+  <img src="assets/doctor.svg" alt="relay doctor terminal output" width="100%">
+</p>
+
+Relay Doctor checks:
+
+- Node.js and Git;
+- origin remote;
+- Relay state freshness;
+- local ↔ remote commit drift;
+- working-tree status;
+- optional SSH aliases.
+
+This catches a costly AI-coding mistake: **continuing from the wrong state while assuming everything was already pushed or deployed.**
+
+---
+
+## 📦 Commands
+
+| Command | What it does |
 | --- | --- |
-| `relay init` | Initialize safe project metadata |
-| `relay save` | Capture current task + Git state |
-| `relay resume` | Show the last saved state |
-| `relay status` | Alias for current Relay state |
-| `relay doctor` | Check Git, GitHub drift, state and optional servers |
-| `relay checkpoint` | Save a timestamped local checkpoint |
-| `relay handoff <agent>` | Create an agent-specific continuation prompt |
-| `relay sync push/pull` | Transfer context via `refs/notes/relay` |
+| relay init | initialize safe project metadata |
+| relay save | capture task + Git state |
+| relay resume | show the last saved state |
+| relay status | inspect current Relay state |
+| relay doctor | detect drift and broken continuity |
+| relay checkpoint | save a timestamped local checkpoint |
+| relay handoff &lt;agent&gt; | generate continuation context for another AI |
+| relay sync push | push portable context to refs/notes/relay |
+| relay sync pull | restore portable context on another machine |
 
-`relay doctor` exits with code 2 only when a check fails. A dirty working tree and a missing GitHub CLI are warnings.
+---
 
-## Optional server checks
+## 🔐 Security-first defaults
 
-Edit `.relay/config.json`:
+> **Project continuity should not require copying credentials.**
 
-```json
+Relay deliberately does not read or copy:
+
+- .env contents;
+- passwords;
+- private SSH keys;
+- browser cookies;
+- AI-provider credential files;
+- authentication sessions.
+
+Additional protections:
+
+- credentials embedded in Git remote URLs are stripped;
+- common token formats in task / note text are masked when redaction is enabled;
+- runtime state and generated handoffs are ignored by Git;
+- SSH checks use your existing aliases and a non-interactive true probe;
+- synced state omits local-only information.
+
+Default configuration:
+
+~~~json
 {
   "schemaVersion": 1,
   "project": "my-app",
-  "servers": [
-    { "alias": "my-prod" }
-  ],
-  "security": { "redactSecrets": true }
+  "servers": [],
+  "security": {
+    "redactSecrets": true
+  }
 }
-```
+~~~
 
-Relay runs only a non-interactive reachability probe:
+See [SECURITY.md](SECURITY.md) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-```text
-ssh -o BatchMode=yes -o ConnectTimeout=3 my-prod true
-```
+---
 
-Private keys remain in your normal SSH configuration.
+## 📁 Project state
 
-## What Relay does not store
-
-Relay deliberately does **not** read or copy:
-
-- passwords
-- `.env` values
-- API tokens
-- private SSH keys
-- browser cookies
-- AI-provider credentials
-
-Runtime state and generated handoffs are ignored by Git by default. Only safe `.relay/config.json` metadata is intended to be committed.
-
-The text you pass to `--task`, `--next` and `--note` is yours, so Relay cannot know what is in it. With `security.redactSecrets` on (the default) it masks common token formats and `password=...` style pairs before the state is saved, handed off or synced. Credentials embedded in the `origin` URL are always removed.
-
-## Project layout
-
-```text
+~~~text
 .relay/
 ├── config.json          # safe project config; may be committed
 ├── state.json           # local runtime state; ignored
 ├── HANDOFF.md           # generated local handoff; ignored
 └── checkpoints/         # local checkpoints; ignored
-```
+~~~
 
-Cross-machine state uses the dedicated `refs/notes/relay` Git ref.
+> **.git remembers your code history. .relay remembers your working continuity.**
 
-## Philosophy
+---
 
-**Stop restarting. Start resuming.**
+## 🌱 Roadmap
 
-Relay is intentionally small. It does not try to replace Git, your IDE, your AI agent, SSH, or deployment tooling. It connects the state between them.
+**v0.1 — done:** task memory, Git-aware state, checkpoints, handoffs, drift detection, cross-machine context sync, SSH checks and secret redaction.
 
-## Roadmap
+**Next:** portable dirty-work snapshots, native Claude/Codex adapters, richer Cursor/Gemini/OpenCode support, Homebrew/Windows distribution, MCP integration, encrypted optional sync and multi-repository workspaces.
 
-See [ROADMAP.md](ROADMAP.md). Near-term priorities include richer dirty-worktree snapshots, automatic agent adapters, encrypted optional sync and MCP integration.
+See [ROADMAP.md](ROADMAP.md).
 
-## Contributing
+---
 
-Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+## 🧩 Build with us
 
-Want your favorite coding agent supported? Open an issue or contribute an adapter.
+Good first places to contribute:
 
-## Security
+- [Claude Code adapter](https://github.com/tashev11/tashev-relay/issues/1)
+- [OpenAI Codex adapter](https://github.com/tashev11/tashev-relay/issues/2)
+- [Portable dirty-work snapshots](https://github.com/tashev11/tashev-relay/issues/3)
+- [Homebrew / Windows installation](https://github.com/tashev11/tashev-relay/issues/4)
 
-Please read [SECURITY.md](SECURITY.md) before reporting a security issue.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## 💬 Why the project exists
+
+The same codebase may be touched by several AI tools in one day. Each can be excellent at coding while starting with incomplete knowledge of what another tool already changed.
+
+Relay turns:
+
+~~~text
+Please inspect the whole repo and guess what we were doing.
+~~~
+
+into:
+
+~~~text
+Current task: Fix refresh-token rotation
+Branch: feature/auth
+Changed files: 4
+Last agent: Claude Code
+Important note: keep existing middleware
+Next: Run integration tests
+~~~
+
+That saves context, avoids repeated exploration and reduces accidental rework.
+
+---
+
+## ⭐ If Relay is useful
+
+If this solves a problem you have, **star the repository** — it helps other AI-assisted developers discover it.
+
+<p align="center">
+  <a href="https://github.com/tashev11/tashev-relay"><strong>⭐ Star Tashev Relay</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/tashev11/tashev-relay/discussions"><strong>💬 Join Discussions</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/tashev11/tashev-relay/issues/new/choose"><strong>🧩 Contribute</strong></a>
+</p>
+
+---
 
 ## License
 
 MIT © 2026 Rinat Tashev.
 
----
-
 <p align="center">
-  Built by <a href="https://github.com/tashev11">@tashev11</a>.
+  Built by <a href="https://github.com/tashev11"><strong>@tashev11</strong></a><br>
+  <em>Stop restarting. Start resuming.</em>
 </p>

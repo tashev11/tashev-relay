@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#0f2740"/></linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-opacity=".28"/></filter>
+</defs>
+<rect width="1280" height="560" rx="30" fill="url(#bg)"/>
+<circle cx="1130" cy="65" r="190" fill="#172554" opacity=".55"/><circle cx="1220" cy="520" r="280" fill="#083344" opacity=".42"/>
+<g transform="translate(76 72)">
+  <rect width="72" height="72" rx="18" fill="#0b0f19" stroke="#334155"/>
+  <path d="M15 25h28l-7-7 6-6 17 17-17 17-6-6 7-7H15z" fill="#fff"/>
+  <path d="M57 49H29l7 7-6 6-17-17 17-17 6 6-7 7h28z" fill="#7dd3fc"/>
+  <text x="96" y="31" fill="#7dd3fc" font-size="24" font-family="ui-monospace,Menlo,monospace" font-weight="700">TASHEV RELAY</text>
+  <text x="96" y="62" fill="#94a3b8" font-size="18" font-family="Arial,sans-serif">Portable project continuity for AI coding</text>
+</g>
+<text x="76" y="225" fill="#fff" font-size="62" font-family="Arial,sans-serif" font-weight="800">Switch AI. Switch machine.</text>
+<text x="76" y="300" fill="url(#accent)" font-size="62" font-family="Arial,sans-serif" font-weight="800">Keep working.</text>
+<text x="78" y="353" fill="#cbd5e1" font-size="23" font-family="Arial,sans-serif">Git remembers your code. Relay remembers where you stopped.</text>
+<g transform="translate(76 405)" filter="url(#shadow)">
+  <rect width="500" height="92" rx="18" fill="#050a12" stroke="#26354a"/>
+  <circle cx="24" cy="24" r="5" fill="#f87171"/><circle cx="43" cy="24" r="5" fill="#fbbf24"/><circle cx="62" cy="24" r="5" fill="#34d399"/>
+  <text x="24" y="62" fill="#7dd3fc" font-size="23" font-family="ui-monospace,Menlo,monospace">$ relay save</text>
+  <text x="205" y="62" fill="#64748b" font-size="23" font-family="ui-monospace,Menlo,monospace">→</text>
+  <text x="244" y="62" fill="#a5b4fc" font-size="23" font-family="ui-monospace,Menlo,monospace">relay resume</text>
+</g>
+<g transform="translate(760 145)" filter="url(#shadow)">
+ <rect width="430" height="315" rx="22" fill="#060b13" stroke="#26354a"/>
+ <rect x="0" y="0" width="430" height="44" rx="22" fill="#111827"/>
+ <circle cx="25" cy="22" r="5" fill="#f87171"/><circle cx="44" cy="22" r="5" fill="#fbbf24"/><circle cx="63" cy="22" r="5" fill="#34d399"/>
+ <text x="24" y="85" fill="#7dd3fc" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Project     my-app</text>
+ <text x="24" y="118" fill="#e2e8f0" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Branch      feature/auth</text>
+ <text x="24" y="151" fill="#e2e8f0" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Agent       claude</text>
+ <text x="24" y="184" fill="#e2e8f0" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ GitHub      in sync</text>
+ <text x="24" y="229" fill="#94a3b8" font-size="15" font-family="Arial,sans-serif">CURRENT TASK</text>
+ <text x="24" y="257" fill="#fff" font-size="18" font-family="Arial,sans-serif">Fix refresh-token rotation</text>
+ <text x="24" y="291" fill="#94a3b8" font-size="15" font-family="Arial,sans-serif">NEXT</text>
+ <text x="24" y="316" fill="#a5b4fc" font-size="18" font-family="Arial,sans-serif">Run integration tests →</text>
+</g>
+</svg>

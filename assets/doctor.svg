@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="500" viewBox="0 0 1280 500">
+<rect width="1280" height="500" rx="28" fill="#0b1220"/>
+<g transform="translate(115 60)">
+ <rect width="1050" height="380" rx="22" fill="#050a12" stroke="#26354a"/>
+ <rect width="1050" height="48" rx="22" fill="#111827"/>
+ <circle cx="26" cy="24" r="6" fill="#f87171"/><circle cx="48" cy="24" r="6" fill="#fbbf24"/><circle cx="70" cy="24" r="6" fill="#34d399"/>
+ <text x="32" y="92" fill="#7dd3fc" font-size="23" font-family="ui-monospace,Menlo,monospace">$ relay doctor</text>
+ <text x="32" y="134" fill="#fff" font-size="20" font-family="ui-monospace,Menlo,monospace" font-weight="700">TASHEV RELAY</text>
+ <text x="32" y="176" fill="#34d399" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Node.js            v20.20.0</text>
+ <text x="32" y="209" fill="#34d399" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Git repository     main @ 2fffedc</text>
+ <text x="32" y="242" fill="#34d399" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Origin remote      github.com/you/project</text>
+ <text x="32" y="275" fill="#34d399" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Relay state        saved 12s ago</text>
+ <text x="32" y="308" fill="#34d399" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ GitHub drift       local matches origin</text>
+ <text x="32" y="341" fill="#34d399" font-size="18" font-family="ui-monospace,Menlo,monospace">✓ Working tree       clean</text>
+ <text x="32" y="382" fill="#7dd3fc" font-size="19" font-family="ui-monospace,Menlo,monospace">Safe to continue ✓</text>
+</g>
+</svg>
