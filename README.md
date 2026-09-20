@@ -62,7 +62,7 @@ Relay keeps that operational context in a small, human-readable state.
 - **Cross-machine state sync** — optional Git notes ref, separate from your working branch.
 - **Drift detection** — compare local HEAD with the remote branch.
 - **Server probes** — optional SSH reachability checks by alias.
-- **Secret-safe by design** — Relay never reads `.env` values, private SSH keys, cookies or AI credentials.
+- **Secret-safe by design** — Relay never reads `.env` values, private SSH keys, cookies or AI credentials. Credentials in remote URLs are stripped and token-like strings in your notes are masked.
 
 ## Install
 
@@ -121,6 +121,8 @@ relay resume
 
 > Relay sync transfers **context state**, not uncommitted source code. If your working tree is dirty, `relay doctor` and `relay sync push` warn you. Commit/push your code or keep working on the same machine.
 
+> Anyone who can read the repository can fetch `refs/notes/relay`. Synced state carries your task text, notes, branch and file names. It leaves out the hostname and local paths, and token-like strings are masked. Two machines can push in any order: Relay merges the notes already on origin first.
+
 ## Commands
 
 | Command | Purpose |
@@ -133,6 +135,8 @@ relay resume
 | `relay checkpoint` | Save a timestamped local checkpoint |
 | `relay handoff <agent>` | Create an agent-specific continuation prompt |
 | `relay sync push/pull` | Transfer context via `refs/notes/relay` |
+
+`relay doctor` exits with code 2 only when a check fails. A dirty working tree and a missing GitHub CLI are warnings.
 
 ## Optional server checks
 
@@ -169,6 +173,8 @@ Relay deliberately does **not** read or copy:
 - AI-provider credentials
 
 Runtime state and generated handoffs are ignored by Git by default. Only safe `.relay/config.json` metadata is intended to be committed.
+
+The text you pass to `--task`, `--next` and `--note` is yours, so Relay cannot know what is in it. With `security.redactSecrets` on (the default) it masks common token formats and `password=...` style pairs before the state is saved, handed off or synced. Credentials embedded in the `origin` URL are always removed.
 
 ## Project layout
 

@@ -15,6 +15,8 @@ Relay must never intentionally read, serialize, sync or print:
 
 Server checks use an SSH alias already configured by the user and execute only `true` in non-interactive mode.
 
+Task text and notes are written by the user, so Relay treats them as untrusted. Credentials embedded in the `origin` URL are always stripped. With `security.redactSecrets` enabled (the default), common token formats and `password=...` style pairs are masked before state is saved, rendered for a handoff or synced. Synced state never includes the hostname or absolute local paths.
+
 ## Supported versions
 
 Security fixes are provided for the latest released version.
