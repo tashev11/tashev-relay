@@ -2,7 +2,7 @@
 
 All notable changes to Tashev Relay are documented here.
 
-## [Unreleased]
+## [0.1.1] - 2026-09-20
 
 ### Security
 - Credentials embedded in the `origin` URL are stripped before the URL is saved, printed, handed off or synced.
