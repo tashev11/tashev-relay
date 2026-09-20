@@ -16,9 +16,13 @@ A Relay state should not dirty the user's working branch just because the task d
 
 v0.1 attaches the latest state to the current HEAD. A receiving machine therefore needs the same commit before pulling context.
 
+Before a state is pushed, Relay merges the notes already on origin, so two machines can push in any order. The pushing machine wins for the current commit; a pull takes the remote version.
+
 ## Security boundary
 
 Core state is derived from Git metadata and explicit CLI arguments. Relay does not scan arbitrary file contents to infer context. That constraint is intentional: it minimizes accidental secret collection.
+
+Everything that is saved, rendered for a handoff or synced passes through one sanitizer, `src/redact.js`. The synced copy additionally drops the hostname and the absolute project path.
 
 ## Agent handoff
 

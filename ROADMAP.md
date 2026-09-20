@@ -13,7 +13,7 @@ Relay stays intentionally small. Roadmap items are driven by real continuity pro
 - [x] Context sync through Git notes
 - [x] Optional SSH server probe
 - [x] Secret-safe defaults
-- [x] macOS / Linux / Windows CI
+- [ ] macOS / Linux / Windows CI (workflow is ready; runs wait for GitHub Actions to be unlocked on the maintainer account)
 
 ## v0.2 — Portable dirty work
 
