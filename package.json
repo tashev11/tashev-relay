@@ -1,6 +1,6 @@
 {
   "name": "tashev-relay",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Portable project continuity for AI coding agents. Switch AI, machine, or terminal and resume where you stopped.",
   "type": "module",
   "bin": { "relay": "./bin/relay.js" },

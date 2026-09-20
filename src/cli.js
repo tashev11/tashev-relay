@@ -8,7 +8,7 @@ import { portableState, sanitizeState } from './redact.js';
 import { runDoctor } from './doctor.js';
 import { printDoctor, printHeader, printState } from './render.js';
 
-const VERSION = '0.1.0';
+const VERSION = '0.1.1';
 const VALUE_OPTIONS = new Set(['task', 'next', 'note', 'agent']);
 
 function parse(args) {
