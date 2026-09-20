@@ -1,7 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { relayPaths } from './paths.js';
-import { renderHandoff } from './state.js';
+import { redactionEnabled, renderHandoff } from './state.js';
+import { sanitizeState } from './redact.js';
 
 const agents = {
   claude: 'Claude Code',
@@ -15,6 +16,8 @@ const agents = {
 export function createHandoff(root, state, agent) {
   const key = String(agent || '').toLowerCase();
   if (!agents[key]) throw new Error('Unknown agent. Try: ' + Object.keys(agents).join(', '));
+  // A state file written by an older Relay may still hold unmasked text.
+  const safe = sanitizeState(state, { redactSecrets: redactionEnabled(root) });
   const instructions = `You are continuing an existing software-development session.
 
 1. Read the project state below before changing files.
@@ -25,7 +28,7 @@ export function createHandoff(root, state, agent) {
 
 Target agent: ${agents[key]}
 
-${renderHandoff(state)}
+${renderHandoff(safe)}
 `;
   const file = join(relayPaths(root).dir, 'handoff-' + key + '.md');
   writeFileSync(file, instructions, 'utf8');

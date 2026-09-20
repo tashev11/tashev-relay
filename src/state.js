@@ -1,9 +1,10 @@
 import os from 'node:os';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { ensureDir, nowIso, readJson, writeJson } from './utils.js';
 import { snapshot } from './git.js';
 import { relayPaths } from './paths.js';
+import { sanitizeState } from './redact.js';
 
 export function loadState(root) {
   return readJson(relayPaths(root).state, null);
@@ -12,19 +13,23 @@ export function loadState(root) {
 export function loadConfig(root) {
   return readJson(relayPaths(root).config, {
     schemaVersion: 1,
-    project: root.split('/').pop(),
+    project: basename(root),
     servers: [],
   });
+}
+
+export function redactionEnabled(root) {
+  return loadConfig(root).security?.redactSecrets !== false;
 }
 
 export function capture(root, updates = {}) {
   const prev = loadState(root) || {};
   const git = snapshot(root);
-  return {
+  return sanitizeState({
     schemaVersion: 1,
     savedAt: nowIso(),
     project: {
-      name: loadConfig(root).project || root.split('/').pop(),
+      name: loadConfig(root).project || basename(root),
       git,
     },
     task: {
@@ -38,7 +43,7 @@ export function capture(root, updates = {}) {
       platform: process.platform,
       node: process.version,
     },
-  };
+  }, { redactSecrets: redactionEnabled(root) });
 }
 
 export function saveState(root, state) {

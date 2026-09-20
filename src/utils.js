@@ -13,7 +13,7 @@ export function exec(command, args = [], options = {}) {
   return {
     ok: result.status === 0,
     status: result.status,
-    stdout: (result.stdout || '').trim(),
+    stdout: options.trim === false ? (result.stdout || '') : (result.stdout || '').trim(),
     stderr: (result.stderr || '').trim(),
   };
 }
