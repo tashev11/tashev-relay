@@ -1,9 +1,9 @@
 name: CI
 
+# Automatic Actions are temporarily disabled because the maintainer account
+# is locked by a GitHub billing issue. Re-enable push/pull_request once fixed.
 on:
-  push:
-    branches: ["main"]
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,23 +14,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            node: 18
-          - os: ubuntu-latest
-            node: 20
-          - os: ubuntu-latest
-            node: 22
-          - os: macos-latest
-            node: 20
-          - os: windows-latest
-            node: 20
+          - { os: ubuntu-latest, node: 18 }
+          - { os: ubuntu-latest, node: 20 }
+          - { os: ubuntu-latest, node: 22 }
+          - { os: macos-latest, node: 20 }
+          - { os: windows-latest, node: 20 }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-          cache: npm
+        with: { node-version: ${{ matrix.node }}, cache: npm }
       - run: npm ci
       - run: npm test
       - run: npm run lint

@@ -11,7 +11,6 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/tashev11/tashev-relay/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/tashev11/tashev-relay/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
   <img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-brightgreen">
   <img alt="Node 18+" src="https://img.shields.io/badge/node-%3E%3D18-brightgreen">
