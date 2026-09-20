@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+.relay/state.json
+.relay/HANDOFF.md
+.relay/checkpoints/
+.relay/handoff-*.md

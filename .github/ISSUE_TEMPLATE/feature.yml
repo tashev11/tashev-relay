@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest a focused continuity improvement
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Continuity problem
+      description: What work is currently lost or repeated?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Project principles
+      options:
+        - label: This can remain local-first.
+          required: true
+        - label: This does not require collecting provider credentials.
+          required: true

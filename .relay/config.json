@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "project": "tashev-relay",
+  "servers": [],
+  "security": {
+    "redactSecrets": true
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+<rect width="1280" height="640" fill="#0b0f19"/>
+<circle cx="1040" cy="110" r="260" fill="#172554"/>
+<circle cx="1120" cy="560" r="300" fill="#082f49"/>
+<text x="90" y="170" fill="#7dd3fc" font-size="34" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">TASHEV RELAY</text>
+<text x="90" y="285" fill="#ffffff" font-size="68" font-weight="700" font-family="Arial, sans-serif">Switch AI. Switch machine.</text>
+<text x="90" y="365" fill="#ffffff" font-size="68" font-weight="700" font-family="Arial, sans-serif">Keep working.</text>
+<text x="90" y="455" fill="#94a3b8" font-size="34" font-family="Arial, sans-serif">Git remembers your code. Relay remembers your work.</text>
+<rect x="90" y="510" width="460" height="72" rx="16" fill="#111827" stroke="#334155"/>
+<text x="120" y="557" fill="#7dd3fc" font-size="30" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">$ relay save → relay resume</text>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "name": "tashev-relay",
+  "version": "0.1.0",
+  "description": "Portable project continuity for AI coding agents. Switch AI, machine, or terminal and resume where you stopped.",
+  "type": "module",
+  "bin": { "relay": "./bin/relay.js" },
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check bin/relay.js && node --check src/cli.js",
+    "smoke": "node ./bin/relay.js --help"
+  },
+  "engines": { "node": ">=18" },
+  "keywords": ["ai", "ai-agents", "claude-code", "codex", "cursor", "gemini-cli", "developer-tools", "context", "handoff", "git"],
+  "repository": { "type": "git", "url": "git+https://github.com/tashev11/tashev-relay.git" },
+  "bugs": { "url": "https://github.com/tashev11/tashev-relay/issues" },
+  "homepage": "https://github.com/tashev11/tashev-relay#readme",
+  "license": "MIT",
+  "author": "Rinat Tashev"
+}

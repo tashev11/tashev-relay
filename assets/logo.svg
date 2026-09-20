@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+<title>Tashev Relay</title>
+<rect width="120" height="120" rx="28" fill="#0b0f19"/>
+<path d="M26 38h43l-10-10 8-8 24 24-24 24-8-8 10-10H26V38z" fill="#fff"/>
+<path d="M94 82H51l10 10-8 8-24-24 24-24 8 8-10 10h43v12z" fill="#7dd3fc"/>
+</svg>
