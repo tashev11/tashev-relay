@@ -4,9 +4,12 @@ import { snapshot, remoteHead } from './git.js';
 import { loadConfig, loadState } from './state.js';
 import { relayPaths } from './paths.js';
 
+const ownFile = (file) => file === '.gitignore' || file === '.relay/' || file.startsWith('.relay/');
+
 export function runDoctor(root) {
   const rows = [];
-  const add = (name, ok, detail = '') => rows.push({ name, ok, detail });
+  // A failed 'fail' check needs attention and sets the exit code; a failed 'warn' check only informs.
+  const add = (name, ok, detail = '', level = 'fail') => rows.push({ name, ok, level: ok ? 'ok' : level, detail });
 
   const nodeMajor = Number(process.versions.node.split('.')[0]);
   add('Node.js', nodeMajor >= 18, process.version);
@@ -16,7 +19,7 @@ export function runDoctor(root) {
   add('Origin remote', Boolean(g.remote), g.remote || 'missing');
 
   const gh = exec('gh', ['auth', 'status'], { timeout: 5000 });
-  add('GitHub CLI', gh.ok, gh.ok ? 'authenticated' : 'not authenticated / unavailable');
+  add('GitHub CLI', gh.ok, gh.ok ? 'authenticated' : 'not authenticated / unavailable (optional)', 'warn');
 
   const p = relayPaths(root);
   add('Relay config', existsSync(p.config), existsSync(p.config) ? 'present' : 'run relay init');
@@ -31,7 +34,13 @@ export function runDoctor(root) {
     else add('GitHub drift', false, 'local ' + g.shortCommit + ' != origin ' + remote.slice(0, 8));
   }
 
-  if (g.isGit) add('Working tree', !g.dirty, g.dirty ? 'uncommitted changes detected' : 'clean');
+  if (g.isGit) {
+    const pending = [...g.changedFiles, ...g.stagedFiles, ...g.untrackedFiles];
+    const detail = !g.dirty ? 'clean'
+      : pending.every(ownFile) ? 'only Relay files are uncommitted: commit .gitignore and .relay/config.json'
+      : 'uncommitted changes detected';
+    add('Working tree', !g.dirty, detail, 'warn');
+  }
 
   const config = loadConfig(root);
   for (const server of config.servers || []) {

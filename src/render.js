@@ -30,9 +30,11 @@ export function printState(state) {
 export function printDoctor(rows) {
   printHeader();
   for (const row of rows) {
-    const mark = row.ok ? color(ansi.green, '✓') : color(ansi.yellow, '!');
+    const mark = row.ok ? color(ansi.green, '✓') : row.level === 'warn' ? color(ansi.yellow, '!') : color(ansi.red, '✗');
     console.log(mark + ' ' + row.name.padEnd(18) + ' ' + row.detail);
   }
-  const bad = rows.filter(x => !x.ok);
-  console.log('\n' + (bad.length ? color(ansi.yellow, bad.length + ' item(s) need attention.') : color(ansi.green, 'Safe to continue ✓')));
+  const failed = rows.filter(x => !x.ok && x.level !== 'warn').length;
+  const warned = rows.filter(x => !x.ok && x.level === 'warn').length;
+  const warnings = warned ? ' (' + warned + (warned === 1 ? ' warning)' : ' warnings)') : '';
+  console.log('\n' + (failed ? color(ansi.yellow, failed + ' item(s) need attention.' + warnings) : color(ansi.green, 'Safe to continue ✓' + warnings)));
 }
